@@ -1,0 +1,41 @@
+
+// fontawesome
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'; 
+
+
+// Color 
+$whiteOff: #f1f1f1; 
+$white: #ffffff; 
+$dark: #191919; 
+$darkOff: #666666; 
+$gray: #a4a4a4; 
+$red: #cc1016; 
+$blue: #0a66c2;
+$blueLight: #eef3f8;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: Helvetica, sans-serif;
+  background-color: #edeff0; 
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.container {
+  max-width: 1128px;
+  width: 96%; 
+  margin: 0 auto;
+}
