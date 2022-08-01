@@ -20,14 +20,13 @@ function Header() {
             <div class="nav-wrapper"> 
                 <div class="left-col"> 
                     <div class="left-col-wrapper"> 
-                        <a class="logo"><i class="fa-brands fa-linkedin"></i></a> 
+                        <a class="logo" href='/'><i class="fa-brands fa-linkedin"></i></a> 
                         <div class="search-field"> 
                             <input type="text" class="search-input"/> 
                             <i class="fa-solid fa-magnifying-glass search-icon"></i>
                         </div> 
                     </div> 
                 </div> 
-
 
                 <div className='right-col'>
                     <div class="right-col-wrapper"> 
@@ -41,28 +40,28 @@ function Header() {
                             <NavItem 
                                 text="Home"
                                 icon="fa-house-chimney"
-                                href="#"
+                                href="/"
                                 active={true}
                             />
                             <NavItem 
                                 text="My Network"
                                 icon="fa-user-group"
-                                href=""
+                                href="/"
                             />
                             <NavItem 
                                 text="Jobs"
                                 icon="fa-briefcase"
-                                href=""
+                                href="/"
                             />
                             <NavItem 
                                 text="Messaging"
                                 icon="fa-comment-dots"
-                                href=""
+                                href="/"
                             />
                             <NavItem 
                                 text="Notifications"
                                 icon="fa-bell"
-                                href=""
+                                href="/"
                             />
                             <div class="user-avatar"> 
                                 <div class="nav-link user-avatar-wrapper"> 
@@ -93,7 +92,7 @@ function Header() {
                             </div> 
 
                             <div class="premium-link"> 
-                                <a href="#"> 
+                                <a href="/"> 
                                     Reactivate Premium: 50% Off
                                 </a> 
                             </div> 

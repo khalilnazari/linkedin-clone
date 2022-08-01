@@ -12,21 +12,23 @@ $blueLight: #eef3f8;
     background-color: #fff;
 
     .nav-wrapper { 
-        min-height: 54px; 
         display:flex;  
         justify-content:space-between; 
+        align-items: center;
         gap: 2rem;  
+        min-height: 54px; 
     }  
 
     .left-col { 
-        display:flex;
         flex:1; 
     } 
 
     .left-col-wrapper { 
-        display:flex;  
-        gap:.5rem; 
         flex: 1;
+        display:flex; 
+        justify-content: start;
+        align-items: center;
+        gap:.5rem; 
     } 
 
     .logo { 
@@ -56,27 +58,31 @@ $blueLight: #eef3f8;
 
     .search-icon {
         position:absolute; 
-        left: 10px;
-        top: 18px;
+        left: 15px;
+        top: 8px;
         color: $gray;
     }
 
     // right col
     .right-col { 
-        display:flex; 
+        // display: flex; 
     } 
       
     .right-col-wrapper { 
-        display:flex; 
+        display: flex; 
     } 
       
     .navbar { 
         display:flex; 
+        justify-content: flex-end;
+        align-items: flex-end;
     } 
 
     // navbar 
     .nav-item { 
         display:flex; 
+        justify-content: flex-end;
+        align-items: flex-end;
     } 
     
     .nav-link { 
@@ -113,6 +119,8 @@ $blueLight: #eef3f8;
     /* user-avatar */ 
     .user-avatar { 
         display:flex; 
+        justify-content: flex-end;
+        align-items: flex-end;
     } 
   
     .user-avatar-wrapper { 
@@ -156,7 +164,6 @@ $blueLight: #eef3f8;
         align-items: center;
         width: 105px;
       
-
         a {
             width: 100%;
             text-align: center;
