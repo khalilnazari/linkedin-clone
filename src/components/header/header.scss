@@ -9,6 +9,9 @@ $blue: #0a66c2;
 $blueLight: #eef3f8;
 
 .header-top {
+    position: sticky;
+    top: 0;
+    
     background-color: #fff;
 
     .nav-wrapper { 

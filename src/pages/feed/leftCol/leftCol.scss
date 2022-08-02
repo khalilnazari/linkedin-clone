@@ -1,36 +1,155 @@
+// Color 
+$whiteOff: #f1f1f1; 
+$white: #ffffff; 
+$dark: #191919; 
+$darkOff: #666666; 
+$gray: #a4a4a4; 
+$red: #cc1016; 
+$blue: #0a66c2;
+$blueLight: #eef3f8;
+
 /* Feed page left column */ 
 .feed-left-col {
     .feed-left-col-section { 
         background-color:white;  
-        border-radius:5px; 
-        margin-bottom: 1rem; 
+        border-radius:8px; 
+        margin-bottom: 10px; 
         border:1px solid lightgray; 
     }
   
     .profile-bunner { 
         width:100%;  
-        height: 70px;  
+        height: 56px;  
         object-fit: cover;  
         border-top-right-radius:5px; 
         border-top-left-radius:5px;
     } 
 
     .profile-summary-body { 
-        margin-top: -25px;  
-        text-align:center;  
+        margin-top: -40px;  
     } 
-  
+    
+    .profile-wrapper {
+        display: block;
+        text-align: center;
+        border-bottom: 2px solid $whiteOff;
+
+        &:hover h4 {
+            text-decoration: underline;
+        }
+    }
+
     .profile-avatar { 
-        width:60px;  
+        width:72px;  
+        height: 72px;
+        object-fit: cover;
         border:2px solid white;  
         border-radius:50%;   
     } 
   
-    .profile-detail-section { 
-        padding: 2rem; 
+    .profile-detail-section {
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        p {
+            font-size: 12px;
+            font-weight: 300;
+            color: $darkOff;
+            margin-top: 5px;
+        }
     } 
-  
-    .recent-activities { 
-        padding: 1rem; 
+
+    .link {
+        font-size: 12px;
+        font-weight: 600;
+        color: $darkOff;
+        padding: 8px 15px;
+        &:hover {
+            background-color: $whiteOff;
+        }
+    }
+
+    .view {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $whiteOff;
+        
+
+        .view-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .view-count {
+            color: $blue;
+        }
+    }
+
+    .bookmarks {
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: $darkOff;
+
+        &:hover {
+            background-color: $whiteOff;
+        }
+
+        span {
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+    
+    .activities { 
+        padding-top: 14px;
+        position: sticky;
+        top: 80px;
     } 
+
+    .activities-section { 
+        padding-bottom: 14px;
+    } 
+
+    .activities-title {
+        font-size: 12px;
+        font-weight: 300;
+        color: $darkOff;
+        margin-top: 5px;
+        padding: 0 10px; 
+        margin-bottom: 10px;
+    }
+
+    .activity-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: $darkOff;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 7px 10px;
+        
+        &:hover {
+            background-color: $whiteOff;
+            color: $dark;
+        }
+    }
+
+    .groups-title {
+        color: $blue;
+        font-weight: bold;
+    }
+
+    .discover-more {
+        display: block;
+        text-align: center;
+        padding: 12px;
+        border-top: 1px solid $gray;
+        font-weight: 500;
+        color: $darkOff;
+        &:hover {
+            background-color: $whiteOff;
+        }
+    }
 }
