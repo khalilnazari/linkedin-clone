@@ -1,0 +1,153 @@
+// Right column
+.feed-right-col{
+    .feed-right-section { 
+        background-color:white;  
+        border: 1px solid lightgray;  
+        border-radius: 8px;  
+        padding: 15px 10px; 
+        margin-bottom: 10px; 
+    } 
+  
+    .feed-right-header { 
+        display:flex;  
+        align-items:center;  
+        justify-content: space-between;  
+    } 
+
+    .header-title {
+        color: var(--dark);
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .feed-right-item { 
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            // border: 1px solid var(--gray);
+            border-radius: 50%;
+        }
+    } 
+
+    .feed-item-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+        .user-type {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--darkOff);
+        }
+    }
+
+    .item-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--darkOff);
+    }
+
+    .follow-btn {
+        background: transparent;
+        padding: 6px 16px;
+        border: 1px solid var(--gray);
+        border-radius: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--darkOff);
+        cursor: pointer;
+        width: max-content;
+        transition: .3s ease;
+
+        &:hover {
+            outline: 1px solid var(--dark);
+            background-color: var(--whiteOff);
+        }
+    }
+
+    .recommend-btn {
+        color: var(--darkOff);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 18px;
+        width: max-content;
+        padding: 2px 8px;
+        border-radius: 3px;
+        transition: .2s ease;
+        font-weight: bold;
+        font-size: 14px;
+        &:hover {
+            background: var(--whiteOff);
+        }
+    }
+
+    .ad {
+        position: sticky;
+        top: 80px;
+    }
+
+    .ad-header {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 8px;
+        p {
+            font-size: 12px;
+        }
+        i {
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+
+    .ad-title {
+        text-align: center;
+        margin: 12px 0;
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--darkOff);
+    }
+
+    .ad-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-area: 5px;
+        img {
+            height: 70px;
+            width: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .ad-about {
+        margin-top: 12px;
+        text-align: center;
+        
+        p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--darkOff);
+        }
+    }
+
+    .ad-btn {
+        display: block;
+        margin: 5px auto;
+        border-color: var(--blue);
+        color: var(--blue);
+        transition: .3s ease;
+
+        &:hover {
+            background-color: rgb(233, 250, 255);
+            outline: 1px solid var(--blue);
+        }
+    }
+}

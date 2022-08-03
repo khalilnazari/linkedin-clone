@@ -1,6 +1,7 @@
 import React from 'react'
 import './feed.scss'
 import LeftCol from './leftCol/LeftCol';
+import RightCol from './rightCol/RightCol';
 
 const Feed = () => {
   return (
@@ -146,39 +147,7 @@ const Feed = () => {
                 {/* main col end */}
 
                 {/* right col */}
-                <div className="feed-right-col"> 
-                    <div className="feed-right-section"> 
-                        <div className="feed-right-header "> 
-                            <h4> 
-                                Linked uses 
-                            </h4> 
-                            <i className="fa-solid fa-circle-info"></i> 
-                        </div> 
-                        <div className="feed-right-item"> 
-                            <h5>a title for users</h5> 
-                            <p> ome information about the above title</p> 
-                        </div> 
-                        <div className="feed-right-item"> 
-                            <h5>a title for users</h5> 
-                            <p> ome information about the above title</p> 
-                        </div> 
-                    </div> 
-
-                    <div className="feed-right-section"> 
-                        <div className="feed-right-header "> 
-                            <h4>Liked uses</h4> 
-                            <i className="fa-solid fa-circle-info"></i> 
-                        </div>
-                        <div className="feed-right-item"> 
-                            <h5>a title for users</h5> 
-                            <p> ome information about the above title</p> 
-                        </div> 
-                        <div className="feed-right-item"> 
-                            <h5>a title for users</h5> 
-                            <p> ome information about the above title</p> 
-                        </div> 
-                    </div> 
-                </div> 
+                <RightCol />
                 {/* right col end */}
             </div> 
         </div> 
