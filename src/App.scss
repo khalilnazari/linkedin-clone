@@ -19,9 +19,19 @@ $blueLight: #eef3f8;
   --dark: #191919; 
   --darkOff: #666666; 
   --gray: #a4a4a4; 
+  --lightGray: #d3d3d3;
   --red: #cc1016; 
   --blue: #0a66c2;
   --blueLight: #eef3f8;
+
+  --heading1: 1.6rem; 
+  --heading2: 1.4rem; 
+  --heading3: 1.2rem; 
+  --heading4: 1rem;
+  --font-mini-bold: 300; 
+  --font-bold: 400;
+  --font-bolder: 500; 
+  --font-boldest: 600; 
 }
 
 * {
@@ -44,6 +54,7 @@ a {
 ul {
   list-style-type: none;
 }
+
 
 .container {
   max-width: 1128px;
