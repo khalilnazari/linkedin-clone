@@ -53,6 +53,7 @@ $blueLight: #eef3f8;
         border: 1px solid $blueLight;;
         background-color: $blueLight;
         transition: .3s ease;
+        width: 280px;
         
         &:focus {
             width: 100%;
@@ -61,9 +62,9 @@ $blueLight: #eef3f8;
 
     .search-icon {
         position:absolute; 
-        left: 15px;
+        left: 18px;
         top: 8px;
-        color: $gray;
+        color: var(--darkOff);
     }
 
     // right col

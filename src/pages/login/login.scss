@@ -1,0 +1,40 @@
+.login-wrapper {
+    .header-top {
+        display: none;
+    }
+
+    main {
+        min-height: 80vh;
+        height: 100%;
+        display: grid;
+        place-content: center;
+    }
+
+    .login-form-wrapper {
+        max-width: 700px;
+        width: 100%;
+
+        .header {
+            margin-bottom: 15px;
+        }
+
+        input, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            border: none;
+            color: white;
+            background-color: var(--blue);
+            cursor: pointer;
+        }
+    }
+
+    .change-form h5{
+        color: var(--blue);
+        cursor: pointer;
+    }
+}

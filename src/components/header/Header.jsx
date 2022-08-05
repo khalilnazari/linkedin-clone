@@ -5,10 +5,10 @@ import './header.scss';
 function Header() {
 
     const NavItem = ({text, icon, url, active, classOhter}) => (
-        <div class={`nav-item ${classOhter}`}> 
-            <a href={url} class={`nav-link ${active && "active"}`}> 
-                <i class={`fa-solid ${icon} nav-link-icon`}></i> 
-                <span class="nav-link-text">{text}</span> 
+        <div className={`nav-item ${classOhter}`}> 
+            <a href={url} className={`nav-link ${active && "active"}`}> 
+                <i className={`fa-solid ${icon} nav-link-icon`}></i> 
+                <span className="nav-link-text">{text}</span> 
             </a> 
         </div> 
     ); 
@@ -16,25 +16,25 @@ function Header() {
 
     return (
     <header className='header-top'>
-        <div class="container"> 
-            <div class="nav-wrapper"> 
-                <div class="left-col"> 
-                    <div class="left-col-wrapper"> 
-                        <a class="logo" href='/'><i class="fa-brands fa-linkedin"></i></a> 
-                        <div class="search-field"> 
-                            <input type="text" class="search-input"/> 
-                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <div className="container"> 
+            <div className="nav-wrapper"> 
+                <div className="left-col"> 
+                    <div className="left-col-wrapper"> 
+                        <a className="logo" href='/'><i className="fa-brands fa-linkedin"></i></a> 
+                        <div className="search-field"> 
+                            <input type="text" className="search-input" placeholder='Search'/> 
+                            <i className="fa-solid fa-magnifying-glass search-icon"></i>
                         </div> 
                     </div> 
                 </div> 
 
                 <div className='right-col'>
-                    <div class="right-col-wrapper"> 
-                        <div class="navbar">
-                            <div class={`nav-item search-item`}> 
-                                <div class={`nav-link`}> 
-                                    <i class="fa-solid fa-magnifying-glass nav-link-icon"></i>
-                                    <span class="nav-link-text">Search</span> 
+                    <div className="right-col-wrapper"> 
+                        <div className="navbar">
+                            <div className={`nav-item search-item`}> 
+                                <div className={`nav-link`}> 
+                                    <i className="fa-solid fa-magnifying-glass nav-link-icon"></i>
+                                    <span className="nav-link-text">Search</span> 
                                 </div> 
                             </div> 
                             <NavItem 
@@ -63,35 +63,35 @@ function Header() {
                                 icon="fa-bell"
                                 href="/"
                             />
-                            <div class="user-avatar"> 
-                                <div class="nav-link user-avatar-wrapper"> 
-                                    <i class="fa-solid fa-circle-user avatar-icon"></i> 
-                                    <div class="user-avatar-text"> 
-                                        <span class="nav-link-text">Me</span>   
-                                        <i class="fa-solid fa-caret-down"></i> 
+                            <div className="user-avatar"> 
+                                <div className="nav-link user-avatar-wrapper"> 
+                                    <i className="fa-solid fa-circle-user avatar-icon"></i> 
+                                    <div className="user-avatar-text"> 
+                                        <span className="nav-link-text">Me</span>   
+                                        <i className="fa-solid fa-caret-down"></i> 
                                     </div> 
                                 </div> 
                             </div>  
 
-                            <div class="user-avatar dropdown-premium"> 
-                                <div class="nav-link user-avatar-wrapper"> 
-                                    <i class="fa-solid fa-ellipsis avatar-icon"></i>
+                            <div className="user-avatar dropdown-premium"> 
+                                <div className="nav-link user-avatar-wrapper"> 
+                                    <i className="fa-solid fa-ellipsis avatar-icon"></i>
                                 </div> 
                             </div>  
                         </div>
                         
-                        <div class="premium-section">
-                            <div class="user-avatar work-item"> 
-                                <div class="nav-link user-avatar-wrapper"> 
-                                    <i class="fa-solid fa-bars work-icon"></i> 
-                                    <div class="user-avatar-text">
-                                        <span class="nav-link-text">Work</span>   
-                                        <i class="fa-solid fa-caret-down"></i> 
+                        <div className="premium-section">
+                            <div className="user-avatar work-item"> 
+                                <div className="nav-link user-avatar-wrapper"> 
+                                    <i className="fa-solid fa-bars work-icon"></i> 
+                                    <div className="user-avatar-text">
+                                        <span className="nav-link-text">Work</span>   
+                                        <i className="fa-solid fa-caret-down"></i> 
                                     </div> 
                                 </div> 
                             </div> 
 
-                            <div class="premium-link"> 
+                            <div className="premium-link"> 
                                 <a href="/"> 
                                     Reactivate Premium: 50% Off
                                 </a> 
