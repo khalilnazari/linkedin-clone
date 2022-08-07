@@ -88,3 +88,72 @@
         }
     }
 } 
+
+// modal 
+.create-post-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.445);
+    z-index: 1111;
+    border:1px solid var(--whiteOff);
+    
+    .post-modal-wrapper {
+        width: 50%;
+        margin: 30px auto auto auto;
+        background: #fff;
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--whiteOff);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+
+
+    .modal-body {
+        padding: 15px;
+
+        textarea,input {
+            border: 1px solid var(--whiteOff);
+            border-radius: 10px;
+            padding: 15px;
+            outline: none;
+            font-size: 16px;
+            width: 100%;
+        }
+    }
+
+
+    .modal-footer {
+        padding: 10px;
+    }
+
+    .post-btn {
+        padding: 6px 15px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        background-color: var(--blue);
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+
+    &.close-modal {
+        display: none;
+    }
+}

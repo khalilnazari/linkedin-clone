@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import CreatePost from '../../components/createPost/CreatePost';
 import DisplayPost from '../../components/displayPost/DisplayPost';
 import './feed.scss'
@@ -6,34 +7,34 @@ import LeftCol from './leftCol/LeftCol';
 import RightCol from './rightCol/RightCol';
 
 const Feed = () => {
-  return (
-    <main className="feed"> 
-        <div className="container"> 
-            <div className="feed-wrapper"> 
-                {/* left col */}
-                <LeftCol />
-                {/* left col end */}
+    const {posts} = useSelector(state => state.posts); 
+    
+    return (
+        <main className="feed"> 
+            <div className="container"> 
+                <div className="feed-wrapper"> 
+                    {/* left col */}
+                    <LeftCol />
+                    {/* left col end */}
 
-                {/* main col */}
-                <div className="feed-main-col"> 
-                    {/* createPost */}
-                    <CreatePost />
+                    {/* main col */}
+                    <div className="feed-main-col"> 
+                        {/* createPost */}
+                        <CreatePost />
 
-                    <div className="display-post-wrapper">
-                        <DisplayPost />
-                        <DisplayPost />
-                        <DisplayPost />
-                    </div>
+                        <div className="display-post-wrapper">
+                            {posts.map(post => <DisplayPost post={post} key={post._id}/>)}
+                        </div>
+                    </div> 
+                    {/* main col end */}
+
+                    {/* right col */}
+                    <RightCol />
+                    {/* right col end */}
                 </div> 
-                {/* main col end */}
-
-                {/* right col */}
-                <RightCol />
-                {/* right col end */}
             </div> 
-        </div> 
-    </main> 
-  )
+        </main> 
+    )
 }
 
 

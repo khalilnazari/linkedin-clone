@@ -4,11 +4,11 @@ import './rightCol.scss'
 const RightCol = () => {
     const FeedItem = ({img, name, desc}) => (
         <div className="feed-right-item"> 
-            <img src={img} alt="user-avata" class="avatar"/>
+            <img src={img} alt="user-avata" className="avatar"/>
             <div className="feed-item-detail">
                 <p className='item-title'>{name}</p>
                 <p className='user-type'>{desc}</p>
-                <button className='follow-btn'><i class="fa-solid fa-plus"></i> Follow</button>
+                <button className='follow-btn'><i className="fa-solid fa-plus"></i> Follow</button>
             </div>
         </div> 
     ); 
@@ -38,13 +38,13 @@ const RightCol = () => {
                     desc="Social Media Platform"
                 />
 
-                <a href="/" className='recommend-btn'><span>View all recommendation</span> <i class="fa-solid fa-arrow-right-long"></i></a>
+                <a href="/" className='recommend-btn'><span>View all recommendation</span> <i className="fa-solid fa-arrow-right-long"></i></a>
             </div> 
 
             <div className="feed-right-section ad"> 
                 <div className="ad-header "> 
                     <p>Ad</p> 
-                    <i class="fa-solid fa-ellipsis"></i>
+                    <i className="fa-solid fa-ellipsis"></i>
                 </div>
                 <p className='ad-title'>Get the latest jobs and industry news</p> 
                 <div className="ad-avatar"> 

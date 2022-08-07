@@ -1,6 +1,6 @@
 import './App.scss';
 import { Header } from './components';
-import { Feed, Login } from './pages';
+import { Feed, Login, Profile} from './pages';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom'; 
 
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/feed' element={<Feed />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>

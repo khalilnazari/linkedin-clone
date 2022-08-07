@@ -37,4 +37,23 @@
         color: var(--blue);
         cursor: pointer;
     }
+
+    .error-wrapper {
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            border:1px solid lightgreen; 
+            background:rgb(230, 255, 230); 
+            color: green;
+        }
+
+        .error {
+            border:1px solid rgb(252, 169, 169); 
+            background:rgb(253, 238, 238); 
+            color: rgb(193, 19, 19);
+        }
+    }
 }
