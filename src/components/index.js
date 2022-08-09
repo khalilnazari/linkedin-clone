@@ -5,5 +5,5 @@ import DisplayPost from "./displayPost/DisplayPost"
 export {
     Header,
     CreatePost, 
-    DisplayPost
+    DisplayPost,
 }

@@ -7,12 +7,12 @@ export const signup = (data) => axios.post('/auth/register', data);
 export const signIn = (data) => axios.post('/auth/login', data); 
 
 // getusers
-export const getUsers = () => axios.get('/auth/'); 
+export const updateProfile = (data, id) => axios.put('/auth/update/'+id, data); 
 
 
 // post
-export const getPosts = () => axios.post('/post'); 
-export const getPost = (id) => axios.post('/post/'+id); 
+export const fetchPosts = () => axios.get('/post'); 
+export const fetchPost = (id) => axios.get('/post/'+id); 
 export const createPost = (post) => axios.post('/post', post); 
-export const updatePost = (post) => axios.post('/post', post); 
-export const deletePost = (id) => axios.post('/post/'+id); 
+export const updatePost = (post) => axios.put('/post', post); 
+export const deletePost = (id) => axios.delete('/post/'+id); 

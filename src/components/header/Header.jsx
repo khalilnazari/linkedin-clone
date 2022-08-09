@@ -23,7 +23,6 @@ function Header() {
 
     // Check if login 
     const isLogin = JSON.parse(localStorage.getItem("linkedinUser"));
-    console.log(isLogin) 
 
 
     return (

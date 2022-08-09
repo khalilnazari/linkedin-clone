@@ -2,23 +2,27 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const Post = require('../models/Post');
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        res.status(201).json(req.body)
+        const savePost = new Post(req.body); 
+        const response = await savePost.save(); 
+        res.status(201).json(response); 
     } catch (error) {
         res.status(500).json({message: "Server error"})
     } 
 })
 
-
-router.get('/', (req, res) => {
+// Fetch all posts 
+router.get('/', async (req, res) => {
     try {
-        res.status(201).json(req.body)
+        const posts = await Post.find().sort({$natural:-1}); 
+        res.status(200).json(posts)
     } catch (error) {
         res.status(500).json({message: "Server error"})
     } 
 })
 
+// Fetch one posts 
 router.get('/:id', (req, res) => {
     try {
         res.status(201).json(req.body)

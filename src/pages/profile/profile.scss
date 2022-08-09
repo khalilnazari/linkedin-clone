@@ -1,0 +1,85 @@
+.profile {
+    margin-top: 20px;
+
+    .form-wrapper {
+        margin-top: 10px;
+        background: #fff;
+        padding: 25px;
+
+        &>h3 {
+            margin-bottom: 20px;
+        }
+    }
+
+    .form-control {
+        label {
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--darkOff);
+            display: block;
+        }
+    }
+
+    .input-control {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid var(--whiteOff);
+        border-radius: 5px;
+        &:focus {
+            outline: 1px solid var(--darkOff);
+        }
+    }
+
+
+    button.input-control {
+        cursor: pointer;
+        background-color: var(--blue);
+        width: fit-content;
+        color: #fff;
+        margin-right: auto;
+    }
+
+    .activities-wrapper {
+        background-color: #fff;
+        padding: 25px;
+        margin-top: 10px;
+        
+    }
+
+    .activites {
+        width: 50%;
+        margin: 10px auto;
+    }
+}
+
+.profile-hero {
+    background-color: #fff;
+    padding: 25px;
+
+    .profile-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 20px;
+    
+    
+    
+        .edit-btn {
+            padding: 6px 18px;
+            font-size: 16px;
+            color: var(--darkOff);
+            cursor: pointer;
+            &:hover {
+                color: var(--dark);
+            }
+        }
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+}

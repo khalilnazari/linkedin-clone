@@ -22,6 +22,9 @@ const UserSchema = new mongoose.Schema(
         profileImg: {
             type: String,
         },
+        phoneNumber: {type: String,},
+        occupation: {type: String,}, 
+
     }, {
         timestamps: true,
     }

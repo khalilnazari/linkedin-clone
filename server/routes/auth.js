@@ -38,7 +38,7 @@ router.post('/register', uniqueEmail, async (req, res) => {
     } 
 });
 
-//  Signinf
+//  Signin
 router.post('/login', async (req, res) => {
     const {email, password} = req.body; 
     try {
@@ -71,12 +71,16 @@ router.post('/login', async (req, res) => {
     } 
 }); 
 
-router.get('/', async () => {
+
+// update user
+router.put('/update/:id', async (req, res) => {
+    const id = req.params.id; 
     try {
-        const users = await User.find(); 
-        console.log(users);
+        const updateUser = await User.findByIdAndUpdate(id, {$set: req.body});
+        console.log(updateUser)
+        res.status(200).json(updateUser) 
     } catch (error) {
-        console.log(error)
+        res.status(500).json({message: "Internal Server Error"});
     }
 })
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import './displayPost.scss'; 
+import moment from 'moment';
 
 const DisplayPost = ({post}) => {
-
     // reaction button component
     const ReactionButton = ({text, icon}) => (
         <button> 
@@ -16,16 +16,16 @@ const DisplayPost = ({post}) => {
         <div className="display-post"> 
             <div className="display-post-header"> 
                 <div className="user-avatar"> 
-                    <img src={post.postImg} alt="user-avatar" className='user-avatar-img'/>
+                    <img src={post.creatorAvatar} alt="user-avatar" className='user-avatar-img'/>
                 </div> 
                 <div className="user-detail"> 
-                    <p className='user-name'>{post.creator}</p>
-                    <span className='user-title'>User Title</span> <br />
-                    <span>9h</span> . <i className="fa-solid fa-earth-asia"></i> 
+                    <p className='user-name'>{post.creatorName}</p>
+                    <span className='user-title'>{post.creatorOccupation}</span> <br />
+                    <span>{moment(post.createdAt).fromNow()}</span> . <i className="fa-solid fa-earth-asia"></i> 
                 </div> 
 
                 <div className="menu"> 
-                    <i className="fa-solid fa-ellipsis"></i> 
+                    <button><i className="fa-solid fa-ellipsis"></i></button> 
                 </div> 
             </div>
 
@@ -33,7 +33,7 @@ const DisplayPost = ({post}) => {
                 <p>{post.postText}</p>
             </div> 
 
-            <img src={post.postImg} className="display-post-media" alt="post media" /> 
+            {post.postImage && <img src={post.postImage} className="display-post-media" alt="post media" />}
             
             <div className="display-post-reaction"> 
                 <div className="reaction-btns"> 
