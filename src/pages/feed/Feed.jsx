@@ -4,14 +4,12 @@ import DisplayPost from '../../components/displayPost/DisplayPost';
 import './feed.scss'
 import LeftCol from './leftCol/LeftCol';
 import RightCol from './rightCol/RightCol';
-import {fetchPosts} from '../../redux/api'
+import {deletePost, fetchPosts} from '../../redux/api'
 import {getPosts} from '../../redux/slices/postSlice'
 import { useSelector, useDispatch} from 'react-redux';
 
 const Feed = () => {
-    const [err, setErr] = useState([]);
     const {posts} = useSelector(state => state.posts);
-    
     const dispatch = useDispatch(); 
 
     // getposts data fetch posts
@@ -26,13 +24,9 @@ const Feed = () => {
 
     useEffect(() => {
         getPostsData();
-    
-        
         posts.reverse(); 
     }, [dispatch]);
 
-    
-    
     return (
         <main className="feed"> 
             <div className="container"> 
@@ -47,7 +41,6 @@ const Feed = () => {
                         <CreatePost />
 
                         <div className="display-post-wrapper">
-                            {err && <p>{err}</p>}
                             {posts.map(post => <DisplayPost post={post} key={post._id}/>)}
                         </div>
                     </div> 

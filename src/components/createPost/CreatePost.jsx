@@ -1,83 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import './createPost.scss'; 
-import {createPost} from '../../redux/api'
-import {useDispatch} from 'react-redux'; 
-import {addPost} from '../../redux/slices/postSlice'
+import CreatePostModal from '../createPostModal/CreatePostModal'; 
+import { toggleModal } from '../../redux/slices/updatePostModal';
 
 const CreatePost = () => {
-    const {_id, firstName, lastName, occupation, profileImg} = JSON.parse(localStorage.getItem("linkedinUser")); 
+    const {profileImg} = JSON.parse(localStorage.getItem("linkedinUser")); 
+    const [modal, setModal] = useState(true); 
+    const {postModal} = useSelector(state => state.postModal); 
     const dispatch = useDispatch(); 
-    const [displayModal, setDisplayModal] = useState(true); 
-    const [postText, setPostText] = useState(''); 
-    const [postImage, setPostImage] = useState(''); 
-    const [post, setPost] = useState(''); 
-
-    useEffect(() => {
-        setPost({...post, creatorId: _id, creatorName: firstName+" "+lastName, creatorAvatar: profileImg, creatorOccupation: occupation}); 
-    }, []); 
-
-    // Open & close modal
-    const handleModal = () => {
-        setDisplayModal(prev => !prev); 
-        if(displayModal) {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-            window.onscroll = function() {
-                window.scrollTo(scrollLeft, scrollTop);
-            };
-        } else {
-            window.onscroll = function() {};
-        }
-    }
-
-    // change postText change
-    const handlePostText = (e) => {
-        setPostText(e.target.value); 
-        setPost({...post, postText: e.target.value }); 
-    } 
-
-    // change postImage change
-    const handlePostImage = (e) => {
-        setPostImage(e.target.value);
-        setPost({...post, postImage: e.target.value })
-    } 
     
-    // createPost
-    const createNewPost = async (data) => {
-        try {
-            const response = await createPost(data); 
-            dispatch(addPost(response.data))
-        } catch (error) {
-            console.log(error)
-        }
+    const handlePostModal = () => {
+        console.log("handlePostModal")
+        dispatch(toggleModal(!postModal));
     }
-
-    // submit form
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        if(JSON.stringify(post) === '{}'){
-            console.log("empy")
-        }
-
-        return;  
-        // send post to api
-        createNewPost(post); 
-
-        // close modal 
-        handleModal(); 
-
-        // empty feild
-        setPostImage('')
-        setPostText('')
-    } 
 
     return (
         <div className="create-post"> 
             <div className="create-post-wrapper"> 
                 <div className="create-post-input"> 
                     <img src={profileImg} className="create-post-avatar" alt="user profile"/> 
-                    <button id="" className="create-post-input-field" onClick={handleModal}>Start a post</button> 
+                    <button onClick={e=>handlePostModal()} className="create-post-input-field">Start a post</button> 
                 </div> 
                 <div className="create-post-media-wrapper"> 
                     <div className="ceate-post-media"> 
@@ -101,37 +44,7 @@ const CreatePost = () => {
                 </div> 
             </div> 
 
-            <div className={`create-post-modal ${displayModal && "close-modal"}`}>
-                <div className="post-modal-wrapper">
-                    <div className="modal-header">
-                        <p>Create Post</p>
-                        <button type='button' onClick={handleModal}><i className="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                        <div className='modal-body'>
-                            <input 
-                                type="text" 
-                                name="postText" 
-                                onChange={e=>handlePostText(e)} 
-                                placeholder="Write post" 
-                                value={postText} 
-                                required
-                                />
-                            
-                            <input 
-                                type="text" 
-                                name='postImage' 
-                                placeholder='Insert image link' 
-                                onChange={e=>handlePostImage(e)} 
-                                value={postImage}/>
-                        </div>
-
-                        <div className='modal-footer'>
-                            <button type='submit' className='post-btn'>Post</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <CreatePostModal showModal={modal}/>
         </div>
     )
 }

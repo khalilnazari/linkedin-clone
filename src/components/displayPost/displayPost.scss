@@ -12,8 +12,51 @@
         gap: .5rem; 
     } 
     
-    .display-post-header .menu { 
+    .update-menu { 
         margin-left:auto; 
+        position: relative;
+
+        button {
+            background-color: transparent;
+            border: none;
+        }
+
+        .menu-icon {
+            border: none;
+            border-radius: 50%;
+            background-color: transparent;
+            padding: 9px 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: .3s ease;
+            &:hover {
+                background-color: var(--whiteOff);
+            }
+        }
+
+        .menu-list {
+            position: absolute;
+            width: 200px;
+            top: 35px;
+            right: 5px;
+            background-color: #fff;
+            border: 1px solid var(--whiteOff);
+            border-radius: 5px;
+            flex-direction: column;
+            display: none;
+            span {
+                cursor: pointer;
+                padding: 10px;
+                transition: .3s ease;
+                &:hover {
+                    background-color: var(--whiteOff);
+                }
+            }
+
+            &.show-menu-list {
+                display: flex;
+            }
+        }
     } 
     
     .user-avatar-img {

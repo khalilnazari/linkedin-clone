@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState } from 'react'
 import './displayPost.scss'; 
 import moment from 'moment';
-
+import CreatePostModal from '../createPostModal/CreatePostModal';
+import {toggleModal} from '../../redux/slices/updatePostModal'
+import { useSelector, useDispatch } from 'react-redux/es/exports';
 const DisplayPost = ({post}) => {
     // reaction button component
     const ReactionButton = ({text, icon}) => (
@@ -10,9 +12,32 @@ const DisplayPost = ({post}) => {
             <span className="reaction-btn-text">{text}</span> 
         </button>
     ); 
+    
+    const {postModal} = useSelector(state => state.postModal);
+    const dispatch = useDispatch(); 
+    const [showPostEditMenu, setShowPostEditMenu] = useState(false); 
+    const [postId, setPostId] = useState(""); 
+
+    // togllge post update menu 
+    const togglePostUpdateMenu  = () => {
+        setShowPostEditMenu(prev => !prev)
+    } 
+
+    // edit 
+    const editPost = (id) => {
+        console.log("edit post")
+        dispatch(toggleModal(!postModal)); 
+        setPostId(id); 
+    }
+
+    // delete
+    const deletePost = () => {
+        console.log('delete post')
+    }
 
     // jsx
     return (
+        <>
         <div className="display-post"> 
             <div className="display-post-header"> 
                 <div className="user-avatar"> 
@@ -24,8 +49,12 @@ const DisplayPost = ({post}) => {
                     <span>{moment(post.createdAt).fromNow()}</span> . <i className="fa-solid fa-earth-asia"></i> 
                 </div> 
 
-                <div className="menu"> 
-                    <button><i className="fa-solid fa-ellipsis"></i></button> 
+                <div className="update-menu"> 
+                    <button onClick={togglePostUpdateMenu}><i className="fa-solid fa-ellipsis menu-icon"></i></button>
+                    <div className={`menu-list ${showPostEditMenu && "show-menu-list"}`}>
+                        <span onClick={e=>editPost(post._id)}><i className="fa-solid fa-pen"></i> Edit</span>
+                        <span onClick={e=>deletePost(post._id)}><i className="fa-solid fa-trash-can"></i> Delete</span>
+                    </div>
                 </div> 
             </div>
 
@@ -44,6 +73,7 @@ const DisplayPost = ({post}) => {
                 </div> 
             </div> 
         </div>
+        </>
     )
 }
 
