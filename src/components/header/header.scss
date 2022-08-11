@@ -11,7 +11,6 @@ $blueLight: #eef3f8;
 .header-top {
     position: sticky;
     top: 0;
-    
     background-color: #fff;
 
     .nav-wrapper { 
@@ -70,10 +69,13 @@ $blueLight: #eef3f8;
     // right col
     .right-col { 
         // display: flex; 
+        align-self: flex-end;
     } 
       
     .right-col-wrapper { 
         display: flex; 
+        align-items: center;
+        justify-content: center;
     } 
       
     .navbar { 

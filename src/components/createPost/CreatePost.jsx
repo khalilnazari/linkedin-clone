@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import './createPost.scss'; 
 import CreatePostModal from '../createPostModal/CreatePostModal'; 
-import { toggleModal } from '../../redux/slices/updatePostModal';
+import { togglePostModal } from '../../redux/reducers/createPostModalSlice';
 
 const CreatePost = () => {
-    const {profileImg} = JSON.parse(localStorage.getItem("linkedinUser")); 
-    const [modal, setModal] = useState(true); 
-    const {postModal} = useSelector(state => state.postModal); 
+    const {profileImg} = JSON.parse(localStorage.getItem("linkedinUser"));
+    const {toggleModal} = useSelector(state => state.postModal); 
     const dispatch = useDispatch(); 
     
     const handlePostModal = () => {
-        console.log("handlePostModal")
-        dispatch(toggleModal(!postModal));
+        dispatch(togglePostModal({toggleModal: !toggleModal}));
     }
 
     return (
@@ -44,7 +42,7 @@ const CreatePost = () => {
                 </div> 
             </div> 
 
-            <CreatePostModal showModal={modal}/>
+            <CreatePostModal />
         </div>
     )
 }

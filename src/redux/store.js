@@ -1,14 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit'
-import postRedcer from './slices/postSlice'; 
-import userRedcer from './slices/userSlice'; 
-import updatePostModal from './slices/updatePostModal';
+import postRedcer from './reducers/postSlice'; 
+import userRedcer from './reducers/userSlice'; 
+import createPostModalSlice from './reducers/createPostModalSlice';
 
 
 const store = configureStore({
     reducer: {
         posts: postRedcer,
         users: userRedcer,
-        postModal: updatePostModal,
+        postModal: createPostModalSlice,
     }
 });
 

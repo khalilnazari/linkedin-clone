@@ -1,9 +1,10 @@
 import React, {useState } from 'react'
 import './displayPost.scss'; 
 import moment from 'moment';
-import CreatePostModal from '../createPostModal/CreatePostModal';
-import {toggleModal} from '../../redux/slices/updatePostModal'
+import {togglePostModal} from '../../redux/reducers/createPostModalSlice'
 import { useSelector, useDispatch } from 'react-redux/es/exports';
+
+
 const DisplayPost = ({post}) => {
     // reaction button component
     const ReactionButton = ({text, icon}) => (
@@ -13,10 +14,9 @@ const DisplayPost = ({post}) => {
         </button>
     ); 
     
-    const {postModal} = useSelector(state => state.postModal);
+    const {toggleModal} = useSelector(state => state.postModal); 
     const dispatch = useDispatch(); 
     const [showPostEditMenu, setShowPostEditMenu] = useState(false); 
-    const [postId, setPostId] = useState(""); 
 
     // togllge post update menu 
     const togglePostUpdateMenu  = () => {
@@ -24,10 +24,8 @@ const DisplayPost = ({post}) => {
     } 
 
     // edit 
-    const editPost = (id) => {
-        console.log("edit post")
-        dispatch(toggleModal(!postModal)); 
-        setPostId(id); 
+    const editPost = (editPostData) => {
+        dispatch(togglePostModal({toggleModal: !toggleModal, editPostData:editPostData})); 
     }
 
     // delete
@@ -52,8 +50,8 @@ const DisplayPost = ({post}) => {
                 <div className="update-menu"> 
                     <button onClick={togglePostUpdateMenu}><i className="fa-solid fa-ellipsis menu-icon"></i></button>
                     <div className={`menu-list ${showPostEditMenu && "show-menu-list"}`}>
-                        <span onClick={e=>editPost(post._id)}><i className="fa-solid fa-pen"></i> Edit</span>
-                        <span onClick={e=>deletePost(post._id)}><i className="fa-solid fa-trash-can"></i> Delete</span>
+                        <span onClick={e=>editPost(post)}><i className="fa-solid fa-pen"></i> Edit</span>
+                        <span onClick={e=>deletePost(post)}><i className="fa-solid fa-trash-can"></i> Delete</span>
                     </div>
                 </div> 
             </div>
