@@ -77,8 +77,7 @@ router.put('/update/:id', async (req, res) => {
     const id = req.params.id; 
     try {
         const updateUser = await User.findByIdAndUpdate(id, {$set: req.body});
-        console.log(updateUser)
-        res.status(200).json(updateUser) 
+        res.status(201).json(updateUser) 
     } catch (error) {
         res.status(500).json({message: "Internal Server Error"});
     }

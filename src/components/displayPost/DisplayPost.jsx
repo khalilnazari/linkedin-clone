@@ -3,6 +3,7 @@ import './displayPost.scss';
 import moment from 'moment';
 import {togglePostModal} from '../../redux/reducers/createPostModalSlice'
 import { useSelector, useDispatch } from 'react-redux/es/exports';
+import CreatePostModal from '../createPostModal/CreatePostModal';
 
 
 const DisplayPost = ({post}) => {
@@ -14,9 +15,11 @@ const DisplayPost = ({post}) => {
         </button>
     ); 
     
-    const {toggleModal} = useSelector(state => state.postModal); 
-    const dispatch = useDispatch(); 
+    // const {toggleModal} = useSelector(state => state.postModal); 
+    // const dispatch = useDispatch(); 
     const [showPostEditMenu, setShowPostEditMenu] = useState(false); 
+    const [hideModal, setHideModal] = useState(true); 
+    const [editPostData, setEditPostData] = useState({}); 
 
     // togllge post update menu 
     const togglePostUpdateMenu  = () => {
@@ -24,8 +27,10 @@ const DisplayPost = ({post}) => {
     } 
 
     // edit 
-    const editPost = (editPostData) => {
-        dispatch(togglePostModal({toggleModal: !toggleModal, editPostData:editPostData})); 
+    const editPost = (data) => {
+        setEditPostData(data)
+        setHideModal(!hideModal)
+        // dispatch(togglePostModal({toggleModal: !toggleModal, editPostData:editPostData})); 
     }
 
     // delete
@@ -71,6 +76,7 @@ const DisplayPost = ({post}) => {
                 </div> 
             </div> 
         </div>
+        {!hideModal && <CreatePostModal hideModal={hideModal} editPostData={editPostData}/>}
         </>
     )
 }

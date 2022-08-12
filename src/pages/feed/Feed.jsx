@@ -5,7 +5,7 @@ import './feed.scss'
 import LeftCol from './leftCol/LeftCol';
 import RightCol from './rightCol/RightCol';
 import {deletePost, fetchPosts} from '../../redux/api'
-import {getPosts} from '../../redux/slices/postSlice'
+import {getPosts} from '../../redux/reducers/postSlice'
 import { useSelector, useDispatch} from 'react-redux';
 
 const Feed = () => {

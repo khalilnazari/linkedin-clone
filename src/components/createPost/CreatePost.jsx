@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import './createPost.scss'; 
 import CreatePostModal from '../createPostModal/CreatePostModal'; 
@@ -9,8 +9,10 @@ const CreatePost = () => {
     const {toggleModal} = useSelector(state => state.postModal); 
     const dispatch = useDispatch(); 
     
+    const [hideModal, setHideModal] = useState(true); 
     const handlePostModal = () => {
-        dispatch(togglePostModal({toggleModal: !toggleModal}));
+        setHideModal(!hideModal)
+        // dispatch(togglePostModal({toggleModal: !toggleModal}));
     }
 
     return (
@@ -42,7 +44,7 @@ const CreatePost = () => {
                 </div> 
             </div> 
 
-            <CreatePostModal />
+            {!hideModal && <CreatePostModal hideModal={hideModal} />}
         </div>
     )
 }

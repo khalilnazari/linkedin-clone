@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
+const { findByIdAndUpdate } = require('../models/Post');
 const Post = require('../models/Post');
 
 router.post('/', async (req, res) => {
@@ -31,12 +32,14 @@ router.get('/:id', (req, res) => {
     } 
 })
 
-
-router.put('/:id', (req, res) => {
+// update post
+router.put('/', async (req, res) => {
+    const {_id, ...rest} = req.body; 
     try {
-        res.status(201).json(req.body)
+        const response = await Post.findByIdAndUpdate(_id, {$set: rest}); 
+        res.status(201).json(response); 
     } catch (error) {
-        res.status(500).json({message: "Server error"})
+        res.status(500).json(error); 
     } 
 })
 

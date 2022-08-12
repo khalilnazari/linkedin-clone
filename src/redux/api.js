@@ -13,6 +13,6 @@ export const updateProfile = (data, id) => axios.put('/auth/update/'+id, data);
 // post
 export const fetchPosts = () => axios.get('/post'); 
 export const fetchPost = (id) => axios.get('/post/'+id); 
-export const createPost = (post) => axios.post('/post', post); 
-export const updatePost = (post) => axios.put('/post', post); 
+export const createPostAPI = (post) => axios.post('/post', post); 
+export const updatePostAPI = (post) => axios.put('/post', post); 
 export const deletePost = (id) => axios.delete('/post/'+id); 

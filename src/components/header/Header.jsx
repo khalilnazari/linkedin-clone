@@ -8,10 +8,10 @@ function Header() {
     // local components
     const NavItem = ({text, icon, url, active, classOhter}) => (
         <div className={`nav-item ${classOhter}`}> 
-            <a href={url} className={`nav-link ${active && "active"}`}> 
+            <Link to={url} className={`nav-link ${active && "active"}`}> 
                 <i className={`fa-solid ${icon} nav-link-icon`}></i> 
                 <span className="nav-link-text">{text}</span> 
-            </a> 
+            </Link> 
         </div> 
     ); 
     
@@ -51,12 +51,12 @@ function Header() {
                                     <span className="nav-link-text">Search</span> 
                                 </div> 
                             </div> 
-                            { isLogin && <NavItem  text="Home" icon="fa-house-chimney" href="/" active={true} /> }
-                            { isLogin && <NavItem  text="My Network" icon="fa-user-group" href="/" /> }
-                            <NavItem  text="Jobs" icon="fa-briefcase" href="/" /> 
+                            { isLogin && <NavItem  text="Home" icon="fa-house-chimney" url="/" active={true} /> }
+                            { isLogin && <NavItem  text="My Network" icon="fa-user-group" url="/" /> }
+                            <NavItem  text="Jobs" icon="fa-briefcase" url="/" /> 
                             
-                            { isLogin && <NavItem  text="Messaging" icon="fa-comment-dots" href="/"/> }
-                            { isLogin && <NavItem  text="Notifications" icon="fa-bell" href="/"/> }
+                            { isLogin && <NavItem  text="Messaging" icon="fa-comment-dots" url="/"/> }
+                            { isLogin && <NavItem  text="Notifications" icon="fa-bell" url="/"/> }
 
                             {isLogin && (
                                 <div className="user-avatar"> 

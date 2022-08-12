@@ -1,23 +1,26 @@
 import React, {useState, useEffect} from 'react'
-import {createPost} from '../../redux/api'
+import { createPostAPI, updatePostAPI } from '../../redux/api'
 import {useDispatch, useSelector} from 'react-redux'; 
-import {addPost} from '../../redux/reducers/postSlice'
+import { addPost, updatePost } from '../../redux/reducers/postSlice'
 import {togglePostModal} from '../../redux/reducers/createPostModalSlice'
 
 
-const CreatePostModal = () => {
-    const {toggleModal, editPostData} = useSelector(state => state.postModal); 
-    const {_id, firstName, lastName, occupation, profileImg} = JSON.parse(localStorage.getItem("linkedinUser")); 
+const CreatePostModal = ({hideModal, editPostData={}}) => {
     const dispatch = useDispatch(); 
-    const [postText, setPostText] = useState(""); 
-    const [postImage, setPostImage] = useState("");
-    const [oldPostText, setOldPostText] = useState(editPostData?.postText); 
-    const [oldPostImage, setOldPostImage] = useState(editPostData?.postImage);
+    const {firstName, lastName, occupation, profileImg} = JSON.parse(localStorage.getItem("linkedinUser")); 
+    const userId = JSON.parse(localStorage.getItem("linkedinUser"))._id; 
+    // const {toggleModal, editPostData} = useSelector(state => state.postModal); 
+    const {postText, postImage, _id} = editPostData || {}; 
+    
+    const [thePostText, setThePostText] = useState(postText || ""); 
+    const [thePostImage, setThePostImage] = useState(postImage || "");
     const [post, setPost] = useState(''); 
+    const [toggleModal, setToggleModal] = useState(hideModal); 
 
     // Open & close modal
     const handlePostModal = () => {
-        dispatch(togglePostModal({toggleModal: !toggleModal})); 
+        setToggleModal(!toggleModal); 
+        // dispatch(togglePostModal({toggleModal: !toggleModal})); 
         if(toggleModal) {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -30,35 +33,30 @@ const CreatePostModal = () => {
     }
 
     useEffect(() => {
-        setPost({...post, creatorId: _id, creatorName: firstName+" "+lastName, creatorAvatar: profileImg, creatorOccupation: occupation}); 
+        if(postText){
+            setPost({...post, _id: _id}); 
+        } else {
+            setPost({...post, creatorId: userId, creatorName: firstName+" "+lastName, creatorAvatar: profileImg, creatorOccupation: occupation}); 
+        }
     },[_id, firstName, lastName, profileImg, occupation]); 
 
 
     // change postText change
     const handlePostText = (e) => {
-        if(editPostData) {
-            setOldPostText(e.target.value); 
-        } else {
-            setPostText(e.target.value); 
-        }
+        setThePostText(e.target.value); 
         setPost({...post, postText: e.target.value }); 
     } 
 
     // change postImage change
     const handlePostImage = (e) => {
-        if(editPostData) {
-            setOldPostImage(e.target.value);
-        } else {
-            setPostImage(e.target.value);
-        }
-
+        setThePostImage(e.target.value);
         setPost({...post, postImage: e.target.value })
     } 
     
     // createPost
     const createNewPost = async (data) => {
         try {
-            const response = await createPost(data); 
+            const response = await createPostAPI(data); 
             dispatch(addPost(response.data))
         } catch (error) {
             console.log(error)
@@ -67,13 +65,12 @@ const CreatePostModal = () => {
 
     
     // update post 
-    const updateExistingPost = (data) => {
-        
-        console.log("updatepost now88: ",data); 
+    const updateExistingPost = async (data) => {
         try {
-            
+            const response = await updatePostAPI(data);
+            dispatch(updatePost(response.data)); 
         } catch (error) {
-            
+            console.log(error)
         }
     }
 
@@ -82,18 +79,17 @@ const CreatePostModal = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        if(editPostData) {
+        if(postText) {
             updateExistingPost(post)
         } else {
-           // send post to api
             createNewPost(post);
         }
         // close modal 
         handlePostModal(); 
 
         // empty feild
-        setPostImage('')
-        setPostText('')
+        setThePostText('')
+        setThePostImage('')
     } 
 
     
@@ -107,43 +103,22 @@ const CreatePostModal = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='modal-body'>
-                        {editPostData ? (
-                            <>
-                            <input 
-                                type="text" 
-                                name="postText" 
-                                onChange={handlePostText} 
-                                placeholder="Write post"
-                                value={oldPostText} 
-                                required
-                                />
-                            
-                            <input 
-                                type="text" 
-                                name='postImage' 
-                                placeholder='Insert image link' 
-                                onChange={handlePostImage} 
-                                value={oldPostImage}/>
-                            </>
-                        ) : (
-                            <>
-                            <input 
-                                type="text" 
-                                name="postText" 
-                                onChange={handlePostText} 
-                                placeholder="Write post"
-                                value={postText} 
-                                required
-                                />
-                            
-                            <input 
-                                type="text" 
-                                name='postImage' 
-                                placeholder='Insert image link' 
-                                onChange={handlePostImage} 
-                                value={postImage}/>
-                            </>
-                        )}
+                        <input 
+                            type="text" 
+                            name="postText" 
+                            onChange={handlePostText} 
+                            placeholder="Write post"
+                            value={thePostText} 
+                            required
+                        />
+                        
+                        <input 
+                            type="text" 
+                            name='postImage' 
+                            placeholder='Insert image link' 
+                            onChange={handlePostImage} 
+                            value={thePostImage}
+                        />
                     </div>
 
                     <div className='modal-footer'>
