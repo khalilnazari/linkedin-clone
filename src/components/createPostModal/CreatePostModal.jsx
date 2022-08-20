@@ -67,7 +67,7 @@ const CreatePostModal = ({hideModal, editPostData={}}) => {
     // update post 
     const updateExistingPost = async (data) => {
         try {
-            const response = await updatePostAPI(data);
+            const response = await updatePostAPI(data, _id);
             if(response.status === 201) { 
                 dispatch(updatePost(response.data)); 
                 alert("The post has been updated successfully!")

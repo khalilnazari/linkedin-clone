@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const { findByIdAndUpdate } = require('../models/Post');
 const Post = require('../models/Post');
 
 router.post('/', async (req, res) => {
@@ -34,19 +33,17 @@ router.get('/:id', (req, res) => {
 
 // update post
 router.put('/:id', async (req, res) => {
-    console.log(req.params); 
-    return; 
-    const {_id, ...rest} = req.body; 
     try {
-        const response = await Post.findByIdAndUpdate(_id, rest); 
-        console.log(response); 
-
+        const response = await Post.findByIdAndUpdate(
+            { _id: req.params.id },
+            { $set: req.body },
+            { new: true }
+        ); 
         res.status(201).json(response); 
     } catch (error) {
         res.status(500).json(error); 
     } 
 })
-
 
 // Delete post.
 router.delete('/:id', async (req, res) => {

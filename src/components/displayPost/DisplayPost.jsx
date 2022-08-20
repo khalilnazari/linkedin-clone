@@ -47,7 +47,10 @@ const DisplayPost = ({post}) => {
 
     // handleDeletePost
     const handleDeletePost = (id) => {
-        handleDeletePostAPI(id); 
+        const permissionText = window.confirm("Are you sure to delete this post?"); 
+        if(permissionText === true) {
+            handleDeletePostAPI(id); 
+        }
     }
 
     // jsx

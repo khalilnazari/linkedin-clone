@@ -10,7 +10,6 @@ import { useSelector, useDispatch} from 'react-redux';
 
 const Feed = () => {
     const { posts } = useSelector(state => state.posts);
-    // console.log(posts)
     const dispatch = useDispatch(); 
 
     // getposts data fetch posts
@@ -22,8 +21,6 @@ const Feed = () => {
             alert(error.response.statusText + ". Please try again later!"); 
         }
     }
-
-    console.log('render')
 
     useEffect(() => {
         // Once page is loaded fetch data from API

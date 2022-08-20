@@ -17,7 +17,6 @@ const postSlices = createSlice({
             state.posts = [action.payload, ...state.posts];
         },
         updatePost: (state, action) => {
-            console.log("slice: ", action.payload)
             state.posts = state.posts.map(post => post._id === action.payload._id ? action.payload : post);
         }, 
         deletePost: (state, action) => {
