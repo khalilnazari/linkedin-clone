@@ -40,7 +40,13 @@ router.post('/register', uniqueEmail, async (req, res) => {
 
 //  Signin
 router.post('/login', async (req, res) => {
-    const {email, password} = req.body; 
+
+    // Check if credintial is sent
+    const { email, password } = req.body; 
+    if(email === undefined || password === undefined) return;
+
+
+    // try & catch block
     try {
         // check if user exist 
         const userExist = await User.findOne({email});
@@ -82,5 +88,15 @@ router.put('/update/:id', async (req, res) => {
         res.status(500).json({message: "Internal Server Error"});
     }
 })
+
+// check if an object is empty; 
+function isEmptyObj(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+}
 
 module.exports = router; 

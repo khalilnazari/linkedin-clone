@@ -3,11 +3,19 @@
         display: none;
     }
 
+    .container {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
     main {
-        min-height: 80vh;
-        height: 100%;
-        display: grid;
-        place-content: center;
+        width: 400px;
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 5px;
     }
 
     .login-form-wrapper {
