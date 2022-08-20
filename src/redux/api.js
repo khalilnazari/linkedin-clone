@@ -14,5 +14,5 @@ export const updateProfile = (data, id) => axios.put('/auth/update/'+id, data);
 export const fetchPosts = () => axios.get('/post'); 
 export const fetchPost = (id) => axios.get('/post/'+id); 
 export const createPostAPI = (post) => axios.post('/post', post); 
-export const updatePostAPI = (post) => axios.put('/post', post); 
-export const deletePost = (id) => axios.delete('/post/'+id); 
+export const updatePostAPI = (post, id) => console.log(id) // axios.put('/post/'+id, post); 
+export const deletePostAPI = (id) => axios.delete('/post/'+id); 

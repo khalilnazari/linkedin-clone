@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CreatePost from '../../components/createPost/CreatePost';
 import DisplayPost from '../../components/displayPost/DisplayPost';
 import './feed.scss'
 import LeftCol from './leftCol/LeftCol';
 import RightCol from './rightCol/RightCol';
-import {deletePost, fetchPosts} from '../../redux/api'
+import { fetchPosts} from '../../redux/api'
 import {getPosts} from '../../redux/reducers/postSlice'
 import { useSelector, useDispatch} from 'react-redux';
 
 const Feed = () => {
-    const {posts} = useSelector(state => state.posts);
+    const { posts } = useSelector(state => state.posts);
+    // console.log(posts)
     const dispatch = useDispatch(); 
 
     // getposts data fetch posts
@@ -18,15 +19,18 @@ const Feed = () => {
             const res = await fetchPosts();
             dispatch(getPosts(res.data)); 
         } catch (error) {
-            console.log(error)
+            alert(error.response.statusText + ". Please try again later!"); 
         }
     }
 
+    console.log('render')
+
     useEffect(() => {
+        // Once page is loaded fetch data from API
         getPostsData();
-        posts.reverse(); 
     }, [dispatch]);
 
+    // jsx
     return (
         <main className="feed"> 
             <div className="container"> 

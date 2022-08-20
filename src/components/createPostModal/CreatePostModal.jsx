@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { createPostAPI, updatePostAPI } from '../../redux/api'
-import {useDispatch, useSelector} from 'react-redux'; 
+import {useDispatch} from 'react-redux'; 
 import { addPost, updatePost } from '../../redux/reducers/postSlice'
-import {togglePostModal} from '../../redux/reducers/createPostModalSlice'
-
 
 const CreatePostModal = ({hideModal, editPostData={}}) => {
     const dispatch = useDispatch(); 
     const {firstName, lastName, occupation, profileImg} = JSON.parse(localStorage.getItem("linkedinUser")); 
     const userId = JSON.parse(localStorage.getItem("linkedinUser"))._id; 
-    // const {toggleModal, editPostData} = useSelector(state => state.postModal); 
-    const {postText, postImage, _id} = editPostData || {}; 
+    const {postText, postImage, _id, postEditMode} = editPostData || {}; 
     
     const [thePostText, setThePostText] = useState(postText || ""); 
     const [thePostImage, setThePostImage] = useState(postImage || "");
@@ -20,7 +17,6 @@ const CreatePostModal = ({hideModal, editPostData={}}) => {
     // Open & close modal
     const handlePostModal = () => {
         setToggleModal(!toggleModal); 
-        // dispatch(togglePostModal({toggleModal: !toggleModal})); 
         if(toggleModal) {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -33,6 +29,10 @@ const CreatePostModal = ({hideModal, editPostData={}}) => {
     }
 
     useEffect(() => {
+        /**
+         * if new post add author's detail in the post object
+         * if update post do not add author details
+         */
         if(postText){
             setPost({...post, _id: _id}); 
         } else {
@@ -60,30 +60,35 @@ const CreatePostModal = ({hideModal, editPostData={}}) => {
             dispatch(addPost(response.data))
         } catch (error) {
             console.log(error)
+            alert(error.response.statusText + ". Please try again later!"); 
         }
     }
-
     
     // update post 
     const updateExistingPost = async (data) => {
         try {
             const response = await updatePostAPI(data);
-            dispatch(updatePost(response.data)); 
+            if(response.status === 201) { 
+                dispatch(updatePost(response.data)); 
+                alert("The post has been updated successfully!")
+            }
         } catch (error) {
             console.log(error)
+            alert(error.response.statusText + ". Please try again later!"); 
         }
     }
-
 
     // submit form
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        if(postText) {
+        // if postEditMode exist update post otherwise create post.
+        if(postEditMode) {
             updateExistingPost(post)
         } else {
             createNewPost(post);
         }
+
         // close modal 
         handlePostModal(); 
 
@@ -122,7 +127,7 @@ const CreatePostModal = ({hideModal, editPostData={}}) => {
                     </div>
 
                     <div className='modal-footer'>
-                        <button type='submit' className='post-btn'>{editPostData ? "Update" : "Post"}</button>
+                        <button type='submit' className='post-btn'>{postEditMode ? "Update" : "Post"}</button>
                     </div>
                 </form>
             </div>

@@ -1,13 +1,15 @@
 import React, {useState } from 'react'
 import './displayPost.scss'; 
 import moment from 'moment';
-import {togglePostModal} from '../../redux/reducers/createPostModalSlice'
-import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { useDispatch } from 'react-redux/es/exports';
 import CreatePostModal from '../createPostModal/CreatePostModal';
-
+import { deletePostAPI } from '../../redux/api'
+import { deletePost } from '../../redux/reducers/postSlice'
 
 const DisplayPost = ({post}) => {
-    // reaction button component
+    const dispatch = useDispatch(); 
+
+    // Local Componenent: reaction button component
     const ReactionButton = ({text, icon}) => (
         <button> 
             <i className={`fa-solid ${icon} reaction-btn-icon`}></i>  
@@ -15,8 +17,6 @@ const DisplayPost = ({post}) => {
         </button>
     ); 
     
-    // const {toggleModal} = useSelector(state => state.postModal); 
-    // const dispatch = useDispatch(); 
     const [showPostEditMenu, setShowPostEditMenu] = useState(false); 
     const [hideModal, setHideModal] = useState(true); 
     const [editPostData, setEditPostData] = useState({}); 
@@ -26,16 +26,28 @@ const DisplayPost = ({post}) => {
         setShowPostEditMenu(prev => !prev)
     } 
 
-    // edit 
+    // edit post
     const editPost = (data) => {
-        setEditPostData(data)
+        setEditPostData({...data, postEditMode:true})
         setHideModal(!hideModal)
-        // dispatch(togglePostModal({toggleModal: !toggleModal, editPostData:editPostData})); 
     }
 
-    // delete
-    const deletePost = () => {
-        console.log('delete post')
+    // handleDeletePostAPI
+    const handleDeletePostAPI = async (id) => {
+        try {
+            const response = await deletePostAPI(id); 
+            if(response.status === 201) {
+                dispatch(deletePost(id)); 
+                alert(response.data); 
+            }
+        } catch (error) {
+            alert(error.response.statusText + ". Please try again later!"); 
+        }
+    }
+
+    // handleDeletePost
+    const handleDeletePost = (id) => {
+        handleDeletePostAPI(id); 
     }
 
     // jsx
@@ -56,7 +68,7 @@ const DisplayPost = ({post}) => {
                     <button onClick={togglePostUpdateMenu}><i className="fa-solid fa-ellipsis menu-icon"></i></button>
                     <div className={`menu-list ${showPostEditMenu && "show-menu-list"}`}>
                         <span onClick={e=>editPost(post)}><i className="fa-solid fa-pen"></i> Edit</span>
-                        <span onClick={e=>deletePost(post)}><i className="fa-solid fa-trash-can"></i> Delete</span>
+                        <span onClick={e=>handleDeletePost(post._id)}><i className="fa-solid fa-trash-can"></i> Delete</span>
                     </div>
                 </div> 
             </div>

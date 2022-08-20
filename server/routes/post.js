@@ -33,10 +33,14 @@ router.get('/:id', (req, res) => {
 })
 
 // update post
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
+    console.log(req.params); 
+    return; 
     const {_id, ...rest} = req.body; 
     try {
-        const response = await Post.findByIdAndUpdate(_id, {$set: rest}); 
+        const response = await Post.findByIdAndUpdate(_id, rest); 
+        console.log(response); 
+
         res.status(201).json(response); 
     } catch (error) {
         res.status(500).json(error); 
@@ -44,9 +48,11 @@ router.put('/', async (req, res) => {
 })
 
 
-router.delete('/:id', (req, res) => {
+// Delete post.
+router.delete('/:id', async (req, res) => {
     try {
-        res.status(201).json(req.body)
+        await Post.findByIdAndDelete(req.params.id); 
+        res.status(201).json("The post has been successfully delete!")
     } catch (error) {
         res.status(500).json({message: "Server error"})
     } 
