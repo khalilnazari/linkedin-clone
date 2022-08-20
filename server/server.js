@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 // accept json data
 app.use(express.json());
 
+// routes
 const authRoute = require('./routes/auth'); 
 const postRoute = require('./routes/post'); 
 
+// use routes 
 app.use('/api/auth', authRoute); 
 app.use('/api/post', postRoute); 
 
@@ -22,5 +24,6 @@ mongoose.connect(mongodbUrl, {
 .then(() => console.log("DB connected Successfully!"))
 .catch(err=>console.log(err))
 
-
-app.listen(process.env.PORT, () => console.log('Server is runinig on '+process.env.PORT))
+// port 
+const PORT = process.env.PORT; 
+app.listen(PORT, () => console.log('Server is runinig on '+PORT))
